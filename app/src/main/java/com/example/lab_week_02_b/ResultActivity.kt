@@ -1,17 +1,20 @@
 package com.example.lab_week_02_b
 
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.button.MaterialButton
 
 class ResultActivity : AppCompatActivity() {
 
     companion object {
-        private const val COLOR_KEY = "COLOR_KEY"
+        const val COLOR_KEY = "COLOR_KEY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +30,7 @@ class ResultActivity : AppCompatActivity() {
                 backgroundScreen.setBackgroundColor(Color.parseColor("#$colorCode"))
             } catch (ex: IllegalArgumentException) {
                 val errorIntent = Intent()
-                errorIntent.putExtra(MainActivity.ERROR_KEY, true) // ✅ akses dari MainActivity
+                errorIntent.putExtra(MainActivity.ERROR_KEY, true)
                 setResult(Activity.RESULT_OK, errorIntent)
                 finish()
             }
@@ -38,6 +41,11 @@ class ResultActivity : AppCompatActivity() {
                 R.string.color_code_result_message,
                 colorCode?.uppercase()
             )
+        }
+
+        // Fungsi untuk kembali ke halaman input color code
+        findViewById<MaterialButton>(R.id.button_back).setOnClickListener {
+            finish()
         }
     }
 }
